@@ -1,0 +1,18 @@
+%% 02 — Expected Airflow DAG. Paste into https://mermaid.live
+flowchart TD
+  T1[T1 S3 sensor on landing]
+  T2[T2 Classify ECS Python]
+  BR{T3 Branch}
+  T4A[T4a Layout sample Textract or Bedrock]
+  T4B[T4b Extract: mapped ECS or Glue PySpark]
+  T5[T5 Silver Glue PySpark]
+  T6[T6 Gold Glue PySpark]
+  T7[T7 Publish snapshot then optional PDF]
+  Q[Quarantine and fail closed]
+
+  T1 --> T2 --> BR
+  BR -->|PDF| T4A --> T4B
+  BR -->|large Excel| T4B
+  BR -->|SQLite Word small| T4B
+  BR -->|bad file| Q
+  T4B --> T5 --> T6 --> T7

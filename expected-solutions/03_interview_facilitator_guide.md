@@ -1,0 +1,42 @@
+# 03 — Interview facilitator guide (75–90 min)
+
+Do not open `diagrams/01_expected_architecture.drawio` until the last five minutes.
+
+## Before
+
+Send `candidate/` ~24 hours ahead. You use this folder. Whiteboard or mermaid.live.
+
+## 0:00–0:08 Alignment
+
+One-minute restatement: batch completeness, PII, tenants, SQL + BI + PDF + web.
+
+If they reach for Lambda or Step Functions as the orchestrator: “Constraints say Airflow on MWAA.”
+
+## 0:08–0:22 Critique
+
+Generated Python, first 20 pages, one process, one OCR path, crawler publish.
+
+## 0:22–0:50 Airflow + Python + PySpark + distribution
+
+Ask them to **draw the DAG**. Then:
+
+- What runs on MWAA vs ECS vs Glue?
+- Mapped tasks for 10k pages
+- Excel Spark vs SQLite Python
+- Idempotency key and pools
+
+This block is the hiring signal for this trial.
+
+## 0:50–0:70 Medallion, publish, security
+
+Landing vs bronze vs silver vs gold. Snapshot commit. SSO vs task roles. Landing not for analysts.
+
+## 0:70–0:85 Serving, SLA, v1 cuts
+
+p95 vs p99. Textract cost. Three deferrals.
+
+## 0:85–0:90 Close
+
+OCR residual risk. Optional: show the single draw.io.
+
+If they freeze on IAM: “Three roles: Airflow, Glue, analyst.” Do not rescue the LLM-exec point.

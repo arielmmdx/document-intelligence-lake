@@ -1,0 +1,10 @@
+%% 02 — Compute choices you must design. Paste into https://mermaid.live
+%% Airflow (MWAA) orchestrates all of these. Workers are ECS Python or Glue PySpark.
+flowchart TB
+  AF[Apache Airflow on MWAA]
+  AF --> Q{What did we land?}
+
+  Q -->|scanned or huge PDF| PAGES[How do you split pages across workers?]
+  Q -->|Excel or CSV with millions of rows| SPARK[Why PySpark on Glue rather than pandas?]
+  Q -->|SQLite Word or small PDF| PY[What does the ECS Python task do?]
+  Q -->|unreadable or unknown layout| QZ[Quarantine — how does the DAG fail closed?]

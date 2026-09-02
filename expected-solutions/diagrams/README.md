@@ -1,11 +1,11 @@
-# Expected diagrams (evaluator)
+# Diagrams (expected solution)
 
-Open in [diagrams.net](https://app.diagrams.net). Do not send this folder to candidates.
+**One draw.io only.** Open [01_expected_architecture.drawio](01_expected_architecture.drawio) in [diagrams.net](https://app.diagrams.net).
 
-| File | What it is |
+| Order | File |
 | --- | --- |
-| [expected-architecture.drawio](expected-architecture.drawio) | Expected AWS medallion architecture (same four sheets as the candidate draw.io) |
-| [expected-architecture-overview.mmd](expected-architecture-overview.mmd) | Compact mermaid of the expected design |
-| [generate-architecture-drawio.py](generate-architecture-drawio.py) | Regenerates both draw.io copies |
+| 1 | [01_expected_architecture.drawio](01_expected_architecture.drawio) |
+| 2 | [02_expected_airflow_dag.mmd](02_expected_airflow_dag.mmd) |
+| 3 | [03_expected_medallion.mmd](03_expected_medallion.mmd) |
 
-Use the draw.io in the **last five minutes** of a live interview if you want a debrief. The candidate should have redesigned from the naive sketch, not copied this file.
+Regenerate the draw.io with `python3 generate_architecture_drawio.py` from this folder.

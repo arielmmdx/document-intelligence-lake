@@ -1,0 +1,10 @@
+%% 01 — Naive pipeline (critique this). Paste into https://mermaid.live
+flowchart LR
+  SRC[PDF Excel Word SQLite text]
+  B[1 Bronze]
+  AI[2 LLM writes Python from first 20 pages]
+  RUN[3 Run that script on the whole file]
+  S[4 Silver then model]
+  OUT[5 Crawler Athena BI PDF web]
+
+  SRC --> B --> AI --> RUN --> S --> OUT
