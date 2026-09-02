@@ -23,11 +23,12 @@ Use as the live spine or as take-home prompts. Depth on **Airflow, Python, PySpa
 - Shuffle: when gold joins PDF-extracted lines to Excel lines, what do you partition on?
 - Checkpoint / replay: Airflow task retry vs Spark job bookmark vs rewriting an Iceberg snapshot.
 
-## 4. Naive design critique
+## 4. Layout / AI (PDF, Excel, and Word)
 
 - Why is “LLM writes Python, then we run it” a production incident?
 - Why do the first 20 pages fail as a layout rule?
-- What should AI emit instead (contract vs code), and who promotes it?
+- Excel and Word are also heterogeneous. Do they skip layout discovery? If not, what do you **sample** vs what do you run at scale (PySpark vs Python)? Why must you **not** OCR or LLM every Excel row?
+- What should AI emit instead of code (a contract), and who promotes it?
 
 ## 5. Medallion and catalog
 

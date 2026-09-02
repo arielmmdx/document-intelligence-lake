@@ -23,6 +23,7 @@ Ask them to **draw the DAG**. Then:
 - What runs on MWAA vs ECS vs Glue?
 - Mapped tasks for 10k pages
 - Excel Spark vs SQLite Python
+- **Probe:** “Does large Excel skip layout? Why not OCR/LLM every row — and how do you still learn the header?”
 - Idempotency key and pools
 
 This block is the hiring signal for this trial.

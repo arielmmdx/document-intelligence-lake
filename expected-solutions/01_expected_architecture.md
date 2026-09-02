@@ -8,14 +8,16 @@ Lambda is not used. MWAA sensors and operators call ECS and Glue.
 
 ```text
 T1  s3_sensor          wait for landing object (checksum in XCom)
-T2  classify           ECS Python: MIME, scanned?, page count, size
+T2  classify           ECS Python: MIME, scanned?, page count, sheets, size
 T3  branch             PDF | Excel | SQLite | Word/text | quarantine
-T4a layout_if_needed   ECS Python + Textract/Bedrock on a *sample* of pages
-T4b extract            mapped ECS (PDF page batches) or Glue PySpark (Excel)
+T4a layout             ALWAYS for unknown fingerprints: sample → extraction contract
+T4b extract            apply that contract at scale (ECS and/or Glue PySpark)
 T5  silver             Glue PySpark: types, PII tags, Iceberg staging
 T6  gold               Glue PySpark: business grain, conformed keys
 T7  publish            Iceberg snapshot / catalog swap, then optional PDF render
 ```
+
+**T4a is not PDF-only.** Excel and Word also need a layout/contract. What changes is *how you sample* and *which engine applies the contract* — not whether you skip discovery.
 
 - **MWAA node** only orchestrates (sensors, BranchPythonOperator, GlueJobOperator, EcsRunTaskOperator, ShortCircuit). No OCR, no Spark, no pandas on 50M rows on the scheduler/worker of Airflow.
 - **Idempotency key:** `tenant_id + sha256(file) + contract_version`. Same key → skip or overwrite staging for that `run_id` only.
@@ -34,11 +36,26 @@ T7  publish            Iceberg snapshot / catalog swap, then optional PDF render
 
 SQLite: integrity check + `SELECT … WHERE id > ? LIMIT n` in Python. Do not hand Spark a 40 GB `.sqlite` blob.
 
-## Layout / AI
+## Layout / AI (every messy format, including Excel and Word)
 
-AI **drafts an extraction contract** (JSON). A trusted interpreter image in ECR **applies** it. Promotion: validate schema → human or CI → pin `contract_id@version` + image digest.
+Do **not** send a 50M-row workbook or a 10k-page PDF through Bedrock row-by-row. Do **not** OCR `.xlsx`.
 
-Not: first 20 pages only. Sample head / mid / tail. Fingerprint each batch; mismatch → new contract or quarantine.
+Do **always** (unless a known `contract_id` already matches the fingerprint):
+
+1. **Sample** a cheap slice.
+2. Draft or match an **extraction contract** (JSON): columns, header row, sheet names, repeating tables, PII flags.
+3. **Promote** the contract (schema + optional human/CI).
+4. **Apply** it with a trusted runtime at scale.
+
+| Format | Sample for layout (T4a) | Apply at scale (T4b) |
+| --- | --- | --- |
+| Scanned PDF | Stratified pages + Textract/Bedrock | Mapped ECS + Textract on page batches |
+| Digital PDF | Text-layer sample, not full OCR | ECS Python interpreter |
+| Excel / CSV | First ~200 rows, all sheet names, merged-cell map; Bedrock only on that sample if the header is ambiguous | **Glue PySpark** reads the rest with the contract (`header_row`, `skip_rows`, column map) |
+| Word | Headings + first tables via python-docx; Bedrock on that extract if needed | ECS Python (document is rarely Spark-shaped) |
+| SQLite | `PRAGMA` + `LIMIT` sample per table | Python paging; schema *is* the contract if it is already relational |
+
+Skipping T4a for “large Excel” in an older sketch was a shortcut. The shortcut is only: **no OCR / no LLM on every row**. Discovery still happens on a sample. Known tenant templates skip T4a after a fingerprint hit.
 
 ## Medallion
 

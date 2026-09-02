@@ -10,9 +10,9 @@ Phrases need not match. Use while they talk.
 
 ## Python vs PySpark
 
-**Strong:** Thresholds; Excel → Glue; SQLite → Python paging; PDF pages → mapped workers; gold joins in Spark with an explicit partition key.
+**Strong:** Thresholds; Excel → Glue **after** a header/sheet contract from a sample; SQLite → Python paging; PDF pages → mapped workers; gold joins in Spark with an explicit partition key.
 
-**Weak:** “Spark for everything” or “Fargate for the 50M-row workbook.”
+**Weak:** “Spark for everything” or “Fargate for the 50M-row workbook.” **Also weak:** sending every Excel row to Bedrock, or skipping layout because “Excel already has columns.”
 
 ## Distributed
 
@@ -20,11 +20,11 @@ Phrases need not match. Use while they talk.
 
 **Weak:** One ECS task, 10k pages in RAM. Unlimited parallelism.
 
-## Naive critique
+## Naive critique / layout
 
-**Strong:** No `exec` of LLM Python; contract + ECR; stratified sample; crawler is not the model; dataset publish.
+**Strong:** No `exec` of LLM Python; contract + ECR; stratified sample; **Excel/Word also get T4a on a sample**; crawler is not the model; dataset publish.
 
-**Weak:** “We will sandbox eval() in prod” with no promotion path.
+**Weak:** “We will sandbox eval() in prod” with no promotion path. “Large Excel skips AI so we just Spark it” with no header/contract story.
 
 ## Medallion / serving / security
 

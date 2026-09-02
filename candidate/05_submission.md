@@ -16,7 +16,7 @@ Task graph, sensors, retries, mapped tasks, idempotency keys, what runs on MWAA 
 
 ## 4. Layout / AI boundary
 
-Artifact, approval, versioning. No `exec` of model code in the data plane unless you describe CI → ECR digest.
+PDF, Excel, and Word: sample vs scale. Contract vs generated Python.
 
 ## 5. Bronze / silver / gold
 
