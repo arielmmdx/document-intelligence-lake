@@ -1,11 +1,9 @@
 # Diagrams (expected solution)
 
-**One draw.io only.** Open [01_expected_architecture.drawio](01_expected_architecture.drawio) in [diagrams.net](https://app.diagrams.net).
+Open the architecture file in [diagrams.net](https://app.diagrams.net) (**File → Open from device**) or with the Draw.io extension in the editor.
 
 | Order | File |
 | --- | --- |
-| 1 | [01_expected_architecture.drawio](01_expected_architecture.drawio) |
-| 2 | [02_expected_airflow_dag.mmd](02_expected_airflow_dag.mmd) |
-| 3 | [03_expected_medallion.mmd](03_expected_medallion.mmd) |
-
-Regenerate the draw.io with `python3 generate_architecture_drawio.py` from this folder.
+| 1 | [01_expected_architecture.drawio](01_expected_architecture.drawio) — the solution diagram |
+| 2 | [02_expected_airflow_dag.mmd](02_expected_airflow_dag.mmd) — paste into [mermaid.live](https://mermaid.live) |
+| 3 | [03_expected_medallion.mmd](03_expected_medallion.mmd) — paste into mermaid.live |
