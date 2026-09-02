@@ -1,0 +1,12 @@
+%% Serving — paste into https://mermaid.live
+flowchart LR
+  G[Gold Iceberg or Parquet + Glue catalog]
+  LF[Lake Formation grants]
+  A[Athena workgroup per tenant]
+
+  G --> LF --> A
+  A --> BI[Tableau / Power BI via Athena]
+  A --> API[API: pre-aggregates or governed views]
+  API --> WEB[Website]
+  G --> REN[Render job: data → PDF template]
+  REN --> PDF[Customer PDF in serving bucket]

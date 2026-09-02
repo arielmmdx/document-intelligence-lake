@@ -1,0 +1,35 @@
+{
+  "$schema": "https://example.internal/extraction-contract.schema.json",
+  "contract_id": "acme.claim-packet.v3",
+  "version": 3,
+  "tenant_scope": ["acme"],
+  "fingerprint": {
+    "method": "textract-block-layout-hash",
+    "match_threshold": 0.86,
+    "on_mismatch": "split_or_quarantine"
+  },
+  "sampling_if_unknown": {
+    "pages": ["1-5", "10%", "50%", "90%", "last-3"]
+  },
+  "document_fields": [
+    { "name": "claim_id", "type": "string", "pii": false, "required": true, "source": "header.kv.claim_number" },
+    { "name": "claimant_name", "type": "string", "pii": true, "required": true, "source": "header.kv.claimant" }
+  ],
+  "repeating_groups": [
+    {
+      "name": "line_item",
+      "grain": "table_row",
+      "table": "items",
+      "page_span": "allow_continue",
+      "columns": [
+        { "name": "line_no", "type": "int", "pii": false },
+        { "name": "amount", "type": "decimal(12,2)", "pii": false }
+      ]
+    }
+  ],
+  "runtime": {
+    "interpreter_image": "123456789012.dkr.ecr.eu-west-1.amazonaws.com/extract-runtime@sha256:REPLACE",
+    "pdf_batch_pages": 50,
+    "overlap_pages": 1
+  }
+}
