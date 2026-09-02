@@ -1,5 +1,5 @@
 {
-  "$schema": "https://example.internal/extraction-contract.schema.json",
+  "$schema": "https://example.com/schemas/extraction-contract.json",
   "contract_id": "acme.claim-packet.v3",
   "version": 3,
   "tenant_scope": ["acme"],

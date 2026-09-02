@@ -1,6 +1,6 @@
-# Expected answers and signals
+# Expected interview answers
 
-Use as a crib sheet while they talk. Phrases need not match.
+Crib sheet for the interviewer. Phrases need not match. This is what a **strong** vs **weak** answer sounds like — not a script the candidate must recite.
 
 ## 1. SLA and completeness
 

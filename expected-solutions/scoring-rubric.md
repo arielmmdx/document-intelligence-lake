@@ -1,4 +1,4 @@
-# Rubric
+# Scoring rubric
 
 Mechanical completeness is evidence, not a score. Recommendation is holistic:
 

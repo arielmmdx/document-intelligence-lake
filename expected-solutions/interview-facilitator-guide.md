@@ -1,6 +1,6 @@
-# Facilitator script (75–90 min)
+# Interview facilitator guide (75–90 min)
 
-Do not show `IMPROVED_ARCHITECTURE.md` until the last 5 minutes, and only if you want a teaching debrief. The candidate should redraw, not reverse-engineer our answer.
+Do not show `expected-architecture.md` or `diagrams/expected-architecture.drawio` until the last 5 minutes, and only if you want a teaching debrief. The candidate should redraw, not reverse-engineer the expected solution.
 
 ## Setup (before)
 

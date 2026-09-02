@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate AWS-icon architecture.drawio. Run from repo; writes candidate + internal copies."""
+"""Generate AWS-icon architecture.drawio. Writes candidate + expected-solutions copies."""
 
 from pathlib import Path
 from xml.sax.saxutils import escape
@@ -416,7 +416,7 @@ def main():
     root = Path(__file__).resolve().parents[2]
     targets = [
         root / "candidate" / "diagrams" / "architecture.drawio",
-        root / "internal" / "diagrams" / "architecture.drawio",
+        root / "expected-solutions" / "diagrams" / "expected-architecture.drawio",
     ]
     for t in targets:
         t.write_text(xml, encoding="utf-8")

@@ -1,6 +1,6 @@
-# Improved architecture (evaluator reference)
+# Expected architecture (solution)
 
-This is a production-shaped answer, not the only acceptable one. Candidates may pick MWAA over Step Functions, Iceberg over a custom manifest, or EMR over Glue. Judge invariants.
+This is the **expected solution** for evaluators. It is a production-shaped answer, not the only acceptable one. Candidates may pick MWAA over Step Functions, Iceberg over a custom manifest, or EMR over Glue. Judge invariants.
 
 ## What was worth keeping from the naive sketch
 
