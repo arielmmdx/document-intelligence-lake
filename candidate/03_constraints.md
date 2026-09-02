@@ -4,9 +4,10 @@ Treat these as production rules unless you change them and say why.
 
 ## Orchestration (fixed)
 
-- **Apache Airflow on Amazon MWAA** orchestrates the entire pipeline.
+- **Apache Airflow on EC2** orchestrates the entire pipeline (scheduler on EC2; it starts ECS and Glue, it does not parse files).
 - **Do not use AWS Lambda** (or Step Functions as the primary orchestrator) to drive the DAG.
-- Airflow tasks **call workers**: ECS Fargate (Python) and Glue Spark jobs (PySpark). Sensors/operators wait on S3, ECS, and Glue.
+- Airflow tasks **call workers**: ECS Fargate (Python images from **ECR**) and Glue Spark jobs (PySpark).
+- Layout uses **Bedrock (LLM)** and/or Textract on a **sample** of every messy format (PDF, Excel, Word). A 10,000-page PDF is never loaded into the LLM in full.
 - A DAG run must be **idempotent** (same file + same contract version → same silver, or a clean skip).
 
 ## Platform
@@ -23,7 +24,7 @@ Treat these as production rules unless you change them and say why.
 - Raw files contain PII. Classify before silver is widely readable.
 - Logs must not contain OCR lines, full-page prompts, or identifiers.
 - KMS CMKs per zone, not only SSE-S3.
-- No public S3. VPC endpoints for S3, ECR, Glue, Athena, MWAA, Textract/Bedrock.
+- No public S3. VPC endpoints for S3, ECR, Glue, Athena, Bedrock/Textract.
 - Scan ECR images. Task roles ≠ deploy role.
 
 ## Engineering

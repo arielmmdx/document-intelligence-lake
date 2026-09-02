@@ -10,7 +10,7 @@ Send `candidate/` ~24 hours ahead. You use this folder. Whiteboard or mermaid.li
 
 One-minute restatement: batch completeness, PII, tenants, SQL + BI + PDF + web.
 
-If they reach for Lambda or Step Functions as the orchestrator: “Constraints say Airflow on MWAA.”
+If they reach for Lambda or Step Functions as the orchestrator: “Constraints say Airflow on EC2.”
 
 ## 0:08–0:22 Critique
 
@@ -20,7 +20,9 @@ Generated Python, first 20 pages, one process, one OCR path, crawler publish.
 
 Ask them to **draw the DAG**. Then:
 
-- What runs on MWAA vs ECS vs Glue?
+- What runs on Airflow EC2 vs ECS vs Glue?
+- How the LLM sees a 10k-page PDF (sample, not the whole file)
+- Mapped tasks for the remaining pages
 - Mapped tasks for 10k pages
 - Excel Spark vs SQLite Python
 - **Probe:** “Does large Excel skip layout? Why not OCR/LLM every row — and how do you still learn the header?”

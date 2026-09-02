@@ -1,19 +1,18 @@
 %% 02 — Expected Airflow DAG. Paste into https://mermaid.live
-%% T4a (layout) runs for PDF, Excel, and Word unless a known contract fingerprint hits.
 flowchart TD
-  T1[T1 S3 sensor on landing]
-  T2[T2 Classify ECS Python]
-  BR{T3 Branch by format}
-  T4A[T4a Layout on a SAMPLE then contract]
-  T4B[T4b Extract at scale using that contract]
+  T1[T1 S3 sensor]
+  T2[T2 Classify ECS from ECR]
+  BR{T3 Branch}
+  T4A[T4a SAMPLE then Textract plus Bedrock LLM contract]
+  T4B[T4b Extract at scale ECS or Glue using contract]
   T5[T5 Silver Glue PySpark]
   T6[T6 Gold Glue PySpark]
-  T7[T7 Publish snapshot then optional PDF]
-  Q[Quarantine and fail closed]
+  T7[T7 Publish snapshot then PDF]
+  Q[Quarantine]
 
   T1 --> T2 --> BR
-  BR -->|PDF Excel Word unknown template| T4A --> T4B
+  BR -->|PDF Excel Word unknown| T4A --> T4B
   BR -->|known fingerprint| T4B
-  BR -->|SQLite with a real schema| T4B
+  BR -->|SQLite with schema| T4B
   BR -->|unreadable| Q
   T4B --> T5 --> T6 --> T7

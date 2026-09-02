@@ -2,16 +2,16 @@
 
 Not the only valid design. Invariants matter: Airflow orchestrates, workers are Python or PySpark, work units are bounded, AI does not `exec` code, publish is atomic.
 
-## Spine: one Airflow DAG on Amazon MWAA
+## Spine: one Airflow DAG on **EC2**
 
-Lambda is not used. MWAA sensors and operators call ECS and Glue.
+Lambda is not used. The Airflow scheduler/webserver run on **EC2**. That instance starts ECS tasks (images from **ECR**) and Glue jobs. It must not OCR, call the LLM on 10k pages, or run Spark.
 
 ```text
 T1  s3_sensor          wait for landing object (checksum in XCom)
 T2  classify           ECS Python: MIME, scanned?, page count, sheets, size
 T3  branch             PDF | Excel | SQLite | Word/text | quarantine
-T4a layout             ALWAYS for unknown fingerprints: sample → extraction contract
-T4b extract            apply that contract at scale (ECS and/or Glue PySpark)
+T4a layout             SAMPLE → Textract (if scanned) → Bedrock LLM → contract JSON
+T4b extract            apply contract at scale (ECS mapped tasks and/or Glue PySpark)
 T5  silver             Glue PySpark: types, PII tags, Iceberg staging
 T6  gold               Glue PySpark: business grain, conformed keys
 T7  publish            Iceberg snapshot / catalog swap, then optional PDF render
@@ -19,10 +19,11 @@ T7  publish            Iceberg snapshot / catalog swap, then optional PDF render
 
 **T4a is not PDF-only.** Excel and Word also need a layout/contract. What changes is *how you sample* and *which engine applies the contract* — not whether you skip discovery.
 
-- **MWAA node** only orchestrates (sensors, BranchPythonOperator, GlueJobOperator, EcsRunTaskOperator, ShortCircuit). No OCR, no Spark, no pandas on 50M rows on the scheduler/worker of Airflow.
+- **Airflow EC2** only orchestrates (sensors, BranchPythonOperator, GlueJobOperator, EcsRunTaskOperator). No OCR, no Spark, no pandas on 50M rows, no Bedrock on 10k pages on that box.
+- **ECR** holds the Python images (classifier, sampler, extractor, PDF renderer). **ECS Fargate** runs them.
 - **Idempotency key:** `tenant_id + sha256(file) + contract_version`. Same key → skip or overwrite staging for that `run_id` only.
-- **Mapped tasks** (Airflow 2.3+ dynamic task mapping): one mapped ECS task per 50-page PDF batch with 1-page overlap.
-- **Pools:** `textract`, `glue_dpu`, `ecs_extract` so one hot tenant cannot starve the cluster.
+- **Mapped tasks:** one ECS task per 50-page PDF batch with 1-page overlap *after* the contract exists.
+- **Pools:** `textract`, `bedrock`, `glue_dpu`, `ecs_extract` so one hot tenant cannot starve the cluster.
 - **Retries:** Airflow retries the **task**, not the whole DAG, with backoff. Glue jobs are restartable from staging.
 
 ## Python vs PySpark (expected rule)
@@ -38,7 +39,16 @@ SQLite: integrity check + `SELECT … WHERE id > ? LIMIT n` in Python. Do not ha
 
 ## Layout / AI (every messy format, including Excel and Word)
 
-Do **not** send a 50M-row workbook or a 10k-page PDF through Bedrock row-by-row. Do **not** OCR `.xlsx`.
+Do **not** send a 50M-row workbook or a 10k-page PDF through Bedrock page-by-page. Do **not** OCR `.xlsx`. Do **not** `open()` 10k pages in the Airflow EC2 process.
+
+How a 10,000-page PDF is “opened” for layout:
+
+1. Object stays in S3 landing.
+2. An **ECS** job (ECR image) uses a PDF library / Textract to pull **only** pages 1–20, a few from the middle, and the last 3 (plus a cheap page-count). That is the sample pack — on the order of tens of pages, not 10,000.
+3. If scanned: Textract Analyze on that sample.
+4. **Bedrock LLM** sees the sample (images or text), not the rest of the packet, and drafts the **extraction contract**.
+5. Contract is stored (DynamoDB/S3 artifacts) and pinned.
+6. **T4b** runs the real extract: mapped ECS + Textract (or text parser) on 50-page batches using that contract — this is the Python/Spark “script,” not LLM-generated source.
 
 Do **always** (unless a known `contract_id` already matches the fingerprint):
 
@@ -71,7 +81,7 @@ Quarantine is landing-class, never under a serving prefix.
 
 ## Security (short)
 
-SSO + MFA for humans. MWAA execution role starts ECS/Glue but does not need `s3:GetObject` on all of gold if workers have their own roles. Analysts never list landing. KMS data keys at **job** grain, not per page.
+SSO + MFA for humans. Airflow EC2 instance role can `ecs:RunTask` and `glue:StartJobRun` but workers use **task roles**. Analysts never list landing. KMS data keys at **job** grain, not per page.
 
 ## Serving
 
@@ -79,6 +89,6 @@ Gold is source of truth. Tableau → Athena. New PDF = render job from gold. Web
 
 ## v1
 
-Ship: MWAA DAG, classify, Textract path, one contract language, ECS + Glue routing, Iceberg publish, Lake Formation tenant filter, PDF job.
+Ship: Airflow on EC2, ECR/ECS, Bedrock layout-on-sample, Textract path, one contract language, Glue routing, Iceberg publish, Lake Formation tenant filter, PDF job.
 
 Defer: website search index, per-tenant CMK, active-active.

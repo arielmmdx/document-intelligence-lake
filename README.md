@@ -2,7 +2,7 @@
 
 Architecture interview for a **senior data engineer**. No application code.
 
-We test: **Apache Airflow** (Amazon MWAA) as orchestrator, **Python** on ECS, **PySpark** on Glue, **distributed work units**, medallion layers, and governed serving. Not a Lambda-driven pipeline.
+We test: **Apache Airflow on EC2** as orchestrator, **Bedrock LLM** for layout on a **sample** (not 10,000 pages), **Python** on ECS (images in ECR), **PySpark** on Glue, medallion layers, and governed serving. Not a Lambda-driven pipeline.
 
 | Track | Time | Output |
 | --- | --- | --- |

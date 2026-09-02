@@ -7,7 +7,7 @@ Use as the live spine or as take-home prompts. Depth on **Airflow, Python, PySpa
 - Sketch the DAG: task names, sensors, retries, pools, `catchup`, and what a **mapped** task is for.
 - How does a DAG run id relate to `tenant_id` + file checksum so retries are idempotent?
 - Where do you **branch** (PDF vs Excel vs SQLite vs quarantine)? `BranchPythonOperator` or separate DAGs — why?
-- Airflow is the orchestrator, not the engine: what must **not** run inside a worker process on the MWAA node?
+- Airflow is the orchestrator, not the engine: what must **not** run on the Airflow **EC2** instance?
 
 ## 2. Python vs PySpark
 
@@ -28,6 +28,7 @@ Use as the live spine or as take-home prompts. Depth on **Airflow, Python, PySpa
 - Why is “LLM writes Python, then we run it” a production incident?
 - Why do the first 20 pages fail as a layout rule?
 - Excel and Word are also heterogeneous. Do they skip layout discovery? If not, what do you **sample** vs what do you run at scale (PySpark vs Python)? Why must you **not** OCR or LLM every Excel row?
+- A PDF has 10,000 pages. How do you “open” it for the LLM without sending 10,000 pages? What is passed to the Python/Spark extract job afterwards?
 - What should AI emit instead of code (a contract), and who promotes it?
 
 ## 5. Medallion and catalog
@@ -39,7 +40,7 @@ Use as the live spine or as take-home prompts. Depth on **Airflow, Python, PySpa
 ## 6. Serving and security (shorter)
 
 - Tableau on Athena: types, IAM, partitions. Source of truth for a reprinted PDF?
-- Roles: MWAA execution role vs ECS task role vs Glue job role vs analyst SSO. Who can read landing?
+- Roles: Airflow EC2 instance role vs ECS task role vs Glue job role vs analyst SSO. Who can read landing?
 - PII in logs. KMS at job grain vs per page.
 
 ## 7. What you would not build in v1

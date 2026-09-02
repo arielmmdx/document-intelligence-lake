@@ -8,7 +8,7 @@ Generated Python, first-20-pages, single process, crawler-as-model.
 
 ## 2. Airflow DAG
 
-Task graph, sensors, retries, mapped tasks, idempotency keys, what runs on MWAA vs ECS vs Glue.
+Task graph, sensors, retries, mapped tasks, idempotency keys, what runs on the Airflow EC2 vs ECS vs Glue. How the LLM sees a 10k-page file (sample vs full).
 
 ## 3. Python vs PySpark vs distributed units
 

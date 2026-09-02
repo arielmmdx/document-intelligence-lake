@@ -23,4 +23,4 @@ See [diagrams/01_naive_pipeline.mmd](diagrams/01_naive_pipeline.mmd).
 5. Glue crawler vs an explicit silver/gold schema.
 6. Copying files into `silver/current/` as “publish.”
 
-Your redesign must use **Apache Airflow** (Amazon MWAA) as the orchestrator of the whole pipeline — see [03_constraints.md](03_constraints.md).
+Your redesign must use **Apache Airflow on EC2** as the orchestrator of the whole pipeline — see [03_constraints.md](03_constraints.md).
