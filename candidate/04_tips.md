@@ -1,6 +1,6 @@
 # 04 — Tips: questions that raise the bar
 
-Use these in the live interview or take-home. Strength is **Airflow, Python helpers, Spark, and the 10,000-page story**, not a list of AWS logos.
+Use these while you write up your answer. Strength is **Airflow, Python helpers, Spark, and the 10,000-page story**, not a list of AWS logos.
 
 ## Airflow
 

@@ -1,46 +1,26 @@
-# 03 — Interview facilitator guide (75–90 min)
+# 03 — Take-home review & debrief guide
 
-Use the Mermaid in this folder’s README or the root README if you want a teaching debrief.
+Use the Mermaid in this folder's README, or the root README, if you want to walk a candidate through the reasoning after the fact.
 
 ## Before
 
-Send `candidate/` ~24 hours ahead (problem is `candidate/README.md`; `01_tips`–`05_tips` are prompts). You use `expected-solutions/README.md` as the full explanation. Whiteboard or mermaid.
+Send `candidate/` (zipped) with an offline, at-home, **8-hour** deadline. The problem is `candidate/README.md`; `01_tips`–`05_tips` are prompts. Use `expected-solutions/README.md` as your own full explanation.
 
-## 0:00–0:08 Alignment
+## Reviewing the write-up
 
-One-minute restatement: batch completeness, PII, tenants, SQL + BI + PDF + web.
+Read it against `05_tips.md`'s structure:
 
-If they reach for Lambda or Step Functions as the orchestrator: “Constraints say Airflow on EC2.”
+- **Critique** of the naive design — generated Python, first 20 pages, one process, crawler as model.
+- **Airflow + Python + PySpark + distribution** — what runs on Airflow EC2 vs ECS vs Glue, how the LLM sees a 10k-page PDF (sample, not the whole file), mapped ECS tasks vs Spark partitions, the idempotency key.
+- **Medallion, publish, security** — landing vs bronze vs silver vs gold, snapshot commit, SSO/MFA, task roles, landing not for analysts.
+- **Serving, SLA, v1 cuts** — p95 vs p99, order-of-magnitude cost, three deferrals and why they're safe to defer.
 
-## 0:08–0:22 Critique
+Score against `04_scoring_rubric.md`. `02_expected_interview_answers.md` has strong/weak phrasing to compare the write-up against. `README.md`'s "Engineering practices to evaluate" section tells you what to look for on Python/PySpark/Airflow craft, logging, and IAM.
 
-Generated Python, first 20 pages, one process, one OCR path, crawler publish.
+If they reach for Lambda or Step Functions without addressing the constraint, or never critique `exec()` of LLM-written Python: that is the rubric's negative signal, not a stylistic choice — do not read past it as a minor omission.
 
-## 0:22–0:50 Airflow + Python + PySpark + distribution
+## Optional debrief call (30–45 min)
 
-Ask them to **draw the DAG**. Then:
+For a **Hire** or **Mixed** write-up, a short call confirms the reasoning is theirs and not copy-pasted. Pull 3–4 questions from `06_defense_questions.md`, matched to whichever section of the write-up was vaguest.
 
-- What runs on Airflow EC2 vs ECS vs Glue?
-- How the LLM sees a 10k-page PDF (sample, not the whole file)
-- Mapped ECS tasks for the remaining pages
-- Excel Spark vs SQLite Python
-- **Probe:** “Does large Excel skip layout? Why not OCR/LLM every row — and how do you still learn the header?”
-- Idempotency key and pools
-
-This block is the hiring signal for this trial.
-
-## 0:50–0:70 Medallion, publish, security
-
-Landing vs bronze vs silver vs gold. Snapshot commit. SSO vs task roles. Landing not for analysts.
-
-## 0:70–0:85 Serving, SLA, v1 cuts
-
-p95 vs p99. Textract cost. Three deferrals.
-
-If they finish early or you want a stronger architect signal, pull 2–3 questions from `06_defense_questions.md` — pick the section where they were vaguest.
-
-## 0:85–0:90 Close
-
-OCR residual risk. Optional: walk the Mermaid in the root README.
-
-If they freeze on IAM: “Three roles: Airflow, Glue, analyst.” Do not rescue the LLM-exec point.
+This is a spot check, not a re-run of the exercise. Do not rescue the LLM-exec point or the IAM-roles point if they freeze on it — a freeze is itself the signal.

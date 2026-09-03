@@ -10,7 +10,7 @@ This page is the full explanation of the pipeline and of how we interview. Use i
 
 ## What this repo is
 
-This is **not** software that runs. It is an **interview script** to see if someone is a senior data engineer. They do not ship a product. They have to **think out loud**.
+This is **not** software that runs. It is an assessment to see if someone is a **Senior Data Engineer / Data Architect**. They do not ship a product. They have to **think out loud** in their write-up.
 
 ---
 
@@ -187,6 +187,6 @@ We still ask **how** they would write code: helper modules, **imports**, **docst
 
 If the role also needs “can ship careful Python in a time box,” use the separate anonymization coding trial. Not the same day.
 
-**How to run:** 75–90 min live, or 4–6 hours written. Candidate files: problem in `candidate/README.md`, then tips `01`–`05`.
+**How to run:** Offline, at home. 8 hours, then stop. Candidate files: problem in `candidate/README.md`, then tips `01`–`05`.
 
-Scoring: [04_scoring_rubric.md](04_scoring_rubric.md). Live script: [03_interview_facilitator_guide.md](03_interview_facilitator_guide.md). Deeper notes: [01_expected_architecture.md](01_expected_architecture.md), [02_expected_interview_answers.md](02_expected_interview_answers.md). Push the candidate to defend a position: [06_defense_questions.md](06_defense_questions.md).
+Scoring: [04_scoring_rubric.md](04_scoring_rubric.md). Review & debrief guide: [03_interview_facilitator_guide.md](03_interview_facilitator_guide.md). Deeper notes: [01_expected_architecture.md](01_expected_architecture.md), [02_expected_interview_answers.md](02_expected_interview_answers.md). Push the candidate to defend a position: [06_defense_questions.md](06_defense_questions.md).

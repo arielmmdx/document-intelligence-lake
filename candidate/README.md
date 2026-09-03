@@ -1,8 +1,8 @@
 # The problem you must solve
 
-This is an **architecture interview**, not a coding test. Do not write a production app, Dockerfile, or Terraform. You explain a design and **why**.
+This is a **Senior Data Engineer / Data Architect** assessment — an **architecture interview**, not a coding test. Do not write a production app, Dockerfile, or Terraform. You explain a design and **why**.
 
-Live: 75–90 minutes. Take-home: 4–6 hours, then stop. After you understand this page, use [01_tips.md](01_tips.md) … [05_tips.md](05_tips.md) to raise the quality of your answer.
+Offline, at home. **8 hours**, then stop. After you understand this page, use [01_tips.md](01_tips.md) … [05_tips.md](05_tips.md) to raise the quality of your answer.
 
 ---
 

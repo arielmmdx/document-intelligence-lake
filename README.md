@@ -1,6 +1,6 @@
 # Document Intelligence Lake — work trial
 
-This repository is a **senior data engineer interview**. The candidate does **not** write a production system. They explain how they would design one, and why.
+This repository is a **Senior Data Engineer / Data Architect assessment**. The candidate does **not** write a production system. They explain how they would design one, and why.
 
 The `candidate/` folder is what you send the interviewee.  
 `expected-solutions/` is the answer key. **Do not send it to the candidate.**
@@ -45,7 +45,7 @@ Seniors still must know **how they would write the code**. We ask them to descri
 
 If the role also needs “can ship careful Python under a time box,” that is a **different** exercise (the client’s anonymization coding trial). Do not mix both on the same day.
 
-**How we run it:** 75–90 minutes live, or 4–6 hours written. Candidate: problem in `candidate/README.md`, tips `01_tips.md` … `05_tips.md`.
+**How we run it:** Offline, at home. **8 hours**, then stop. Candidate: problem in `candidate/README.md`, tips `01_tips.md` … `05_tips.md`.
 
 ```bash
 zip -r document-intelligence-lake-candidate.zip candidate
@@ -234,6 +234,6 @@ flowchart TD
 | [candidate/](candidate/README.md) | Interviewee — files `01` … `05` |
 | [expected-solutions/](expected-solutions/README.md) | Interviewer only |
 
-Live interview script: [expected-solutions/03_interview_facilitator_guide.md](expected-solutions/03_interview_facilitator_guide.md).  
+Review & debrief guide: [expected-solutions/03_interview_facilitator_guide.md](expected-solutions/03_interview_facilitator_guide.md).  
 Score: [expected-solutions/04_scoring_rubric.md](expected-solutions/04_scoring_rubric.md).  
 Follow-up questions to test depth: [expected-solutions/06_defense_questions.md](expected-solutions/06_defense_questions.md).

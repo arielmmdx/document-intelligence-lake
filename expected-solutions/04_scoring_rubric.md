@@ -39,7 +39,8 @@ Not required to pass — a candidate who never gets probed on these because time
 Candidate:
 Evaluator:
 Date:
-Format: live / take-home
+Format: offline take-home (8h)
+Debrief call: yes / no
 
 Airflow DAG:
 Python vs PySpark:

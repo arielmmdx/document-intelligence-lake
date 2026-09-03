@@ -1,6 +1,6 @@
-# 05 — Tips: take-home write-up (skip if you are live only)
+# 05 — Tips: take-home write-up
 
-Stop at 6 hours. Structure that usually scores well:
+Stop at 8 hours. Structure that usually scores well:
 
 1. **Critique** of the naive design (generated Python, first 20 pages, one process, crawler as model).  
 2. **Airflow DAG + Python helpers** (docstrings, imports, EC2 vs ECS vs Glue). LLM sample vs full file. Who writes silver.  
