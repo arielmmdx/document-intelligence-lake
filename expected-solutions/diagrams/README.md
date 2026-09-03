@@ -1,9 +1,11 @@
 # Diagrams (expected solution)
 
-Open the architecture file in [diagrams.net](https://app.diagrams.net) (**File → Open from device**) or with the Draw.io extension in the editor.
+GitHub renders **Mermaid** in Markdown. There is no draw.io (it does not preview on GitHub).
 
-| Order | File |
+The same pictures live in the [root README](../../README.md). Extra copies:
+
+| File | What |
 | --- | --- |
-| 1 | [01_expected_architecture.drawio](01_expected_architecture.drawio) — the solution diagram |
-| 2 | [02_expected_airflow_dag.mmd](02_expected_airflow_dag.mmd) — paste into [mermaid.live](https://mermaid.live) |
-| 3 | [03_expected_medallion.mmd](03_expected_medallion.mmd) — paste into mermaid.live |
+| [01_one_pdf.mmd](01_one_pdf.mmd) | Sample vs full extract; who writes silver |
+| [02_expected_airflow_dag.mmd](02_expected_airflow_dag.mmd) | DAG |
+| [03_expected_medallion.mmd](03_expected_medallion.mmd) | Layers |

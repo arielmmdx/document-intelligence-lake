@@ -4,9 +4,9 @@ Phrases need not match. Use while they talk.
 
 ## Airflow
 
-**Strong:** DAG of sensors + ECS + Glue operators; nothing heavy on the Airflow **EC2**; LLM only on a page/header sample; mapped tasks for page batches; pools; idempotent run key; branch to quarantine; task-level retries.
+**Strong:** LLM only on a sample; recipe JSON; Python/Spark writes silver; docstrings and helpers described; Airflow EC2 does not parse PDFs.
 
-**Weak:** “Lambda triggers Lambda.” Pandas of 40 GB on the Airflow EC2. Bedrock on all 10,000 pages. One task “process_file” for every format.
+**Weak:** “Send the 10k-page PDF to the LLM.” “Bedrock writes Parquet.” DAG with no docstrings and a 400-line task.
 
 ## Python vs PySpark
 

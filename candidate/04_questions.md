@@ -9,12 +9,15 @@ Use as the live spine or as take-home prompts. Depth on **Airflow, Python, PySpa
 - Where do you **branch** (PDF vs Excel vs SQLite vs quarantine)? `BranchPythonOperator` or separate DAGs — why?
 - Airflow is the orchestrator, not the engine: what must **not** run on the Airflow **EC2** instance?
 
-## 2. Python vs PySpark
+## 2. Python you would actually write (describe, do not paste a product)
 
+- Sketch a **helper module**: function names, **imports**, and a **docstring** on each function (`sample_pages`, `extract_page_range`, …).
+- Sketch the **Airflow DAG** file: DAG docstring (purpose, owner, retries), task callables with docstrings.
+- Which libraries for a scanned PDF vs Excel vs Spark, and why those stay in the **ECR image** rather than on the Airflow EC2?
+- Who **writes silver**: the LLM or those helpers? What is the LLM’s only output?
 - Decision rule: ECS Python vs Glue PySpark. Give thresholds (rows, bytes, pages), not a brand preference.
 - 50M-row Excel: how do you parse headers/merged cells in Spark without a driver OOM?
 - SQLite: why might Spark be the wrong default? How do you page in Python?
-- What belongs in a **shared Python library** (in ECR) vs a **Spark job script**?
 
 ## 3. Distributed compute
 

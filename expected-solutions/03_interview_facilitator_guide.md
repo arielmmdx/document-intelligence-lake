@@ -1,6 +1,6 @@
 # 03 — Interview facilitator guide (75–90 min)
 
-Do not open `diagrams/01_expected_architecture.drawio` until the last five minutes.
+Do not open draw.io. Use the Mermaid in the root README if you want a teaching debrief.
 
 ## Before
 
@@ -22,8 +22,7 @@ Ask them to **draw the DAG**. Then:
 
 - What runs on Airflow EC2 vs ECS vs Glue?
 - How the LLM sees a 10k-page PDF (sample, not the whole file)
-- Mapped tasks for the remaining pages
-- Mapped tasks for 10k pages
+- Mapped ECS tasks for the remaining pages
 - Excel Spark vs SQLite Python
 - **Probe:** “Does large Excel skip layout? Why not OCR/LLM every row — and how do you still learn the header?”
 - Idempotency key and pools
@@ -40,6 +39,6 @@ p95 vs p99. Textract cost. Three deferrals.
 
 ## 0:85–0:90 Close
 
-OCR residual risk. Optional: show the single draw.io.
+OCR residual risk. Optional: walk the Mermaid in the root README.
 
 If they freeze on IAM: “Three roles: Airflow, Glue, analyst.” Do not rescue the LLM-exec point.

@@ -1,18 +1,17 @@
-%% 02 — Expected Airflow DAG. Paste into https://mermaid.live
+%% 02 — Airflow on EC2. LLM only on T4a sample.
 flowchart TD
-  T1[T1 S3 sensor]
-  T2[T2 Classify ECS from ECR]
-  BR{T3 Branch}
-  T4A[T4a SAMPLE then Textract plus Bedrock LLM contract]
-  T4B[T4b Extract at scale ECS or Glue using contract]
-  T5[T5 Silver Glue PySpark]
-  T6[T6 Gold Glue PySpark]
-  T7[T7 Publish snapshot then PDF]
+  T1[T1 File in S3?]
+  T2[T2 Classify ECS]
+  T3{T3 Known recipe?}
+  T4A[T4a Sample plus LLM recipe]
+  T4B[T4b Python or Spark extract all pages]
+  T5[T5 Silver]
+  T6[T6 Gold]
+  T7[T7 Publish]
   Q[Quarantine]
 
-  T1 --> T2 --> BR
-  BR -->|PDF Excel Word unknown| T4A --> T4B
-  BR -->|known fingerprint| T4B
-  BR -->|SQLite with schema| T4B
-  BR -->|unreadable| Q
+  T1 --> T2 --> T3
+  T3 -->|no| T4A --> T4B
+  T3 -->|yes| T4B
+  T3 -->|broken| Q
   T4B --> T5 --> T6 --> T7

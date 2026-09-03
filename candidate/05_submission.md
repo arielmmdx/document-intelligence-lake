@@ -6,9 +6,9 @@ Calendar time (stop at 6 hours):
 
 Generated Python, first-20-pages, single process, crawler-as-model.
 
-## 2. Airflow DAG
+## 2. Airflow DAG and Python helpers
 
-Task graph, sensors, retries, mapped tasks, idempotency keys, what runs on the Airflow EC2 vs ECS vs Glue. How the LLM sees a 10k-page file (sample vs full).
+DAG, docstrings, what runs on EC2 vs ECS vs Glue. Helper functions and imports you would put in the extractor image. How the LLM sees a 10k-page file (sample vs full). Who writes silver.
 
 ## 3. Python vs PySpark vs distributed units
 

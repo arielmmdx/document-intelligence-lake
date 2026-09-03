@@ -20,7 +20,7 @@ A missing section with “I would do X next” beats a wallpaper of service name
 - One Fargate task holds 10k pages or 50M Excel rows
 - PySpark on SQLite as a blob; OCR on `.xlsx`
 - Heavy work on the Airflow EC2 (LLM, OCR, Spark)
-- Bedrock/LLM on every page of a 10k-page PDF
+- **LLM on every page** of a 10k-page PDF, or the LLM writing silver itself
 - Analysts on the landing bucket
 - Crawler as the model; `current/` copy as publish
 
