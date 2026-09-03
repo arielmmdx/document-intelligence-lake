@@ -1,10 +1,10 @@
 # 03 — Interview facilitator guide (75–90 min)
 
-Do not open draw.io. Use the Mermaid in the root README if you want a teaching debrief.
+Use the Mermaid in this folder’s README or the root README if you want a teaching debrief.
 
 ## Before
 
-Send `candidate/` ~24 hours ahead. You use this folder. Whiteboard or mermaid.live.
+Send `candidate/` ~24 hours ahead (problem is `candidate/README.md`; `01_tips`–`05_tips` are prompts). You use `expected-solutions/README.md` as the full explanation. Whiteboard or mermaid.
 
 ## 0:00–0:08 Alignment
 

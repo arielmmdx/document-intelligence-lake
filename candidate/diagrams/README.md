@@ -1,10 +1,10 @@
-# Diagrams (candidate)
+# Diagrams
 
-Two files only. Paste into [mermaid.live](https://mermaid.live).
+Paste into [mermaid.live](https://mermaid.live) if useful.
 
-| Order | File | Use |
-| --- | --- | --- |
-| 1 | [01_naive_pipeline.mmd](01_naive_pipeline.mmd) | The sketch you must critique |
-| 2 | [02_compute_choices.mmd](02_compute_choices.mmd) | The compute questions you must answer |
+| File | What |
+| --- | --- |
+| [01_naive_pipeline.mmd](01_naive_pipeline.mmd) | First idea you must improve |
+| [02_compute_choices.mmd](02_compute_choices.mmd) | Sample vs scale extract |
 
-There is **no** solution diagram in this folder. During the interview, draw or use mermaid. The interviewer has pictures in the main README.
+The problem text is in [../README.md](../README.md).

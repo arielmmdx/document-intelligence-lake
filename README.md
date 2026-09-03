@@ -43,7 +43,7 @@ Seniors still must know **how they would write the code**. We ask them to descri
 
 If the role also needs “can ship careful Python under a time box,” that is a **different** exercise (the client’s anonymization coding trial). Do not mix both on the same day.
 
-**How we run it:** 75–90 minutes live, or 4–6 hours written (`candidate/05_submission.md`). One track only.
+**How we run it:** 75–90 minutes live, or 4–6 hours written. Candidate: problem in `candidate/README.md`, tips `01_tips.md` … `05_tips.md`.
 
 ```bash
 zip -r document-intelligence-lake-candidate.zip candidate
