@@ -24,6 +24,15 @@ A missing section with “I would do X next” beats a wallpaper of service name
 - Analysts on the landing bucket
 - Crawler as the model; `current/` copy as publish
 
+## Architect-level bonus signals
+
+Not required to pass — a candidate who never gets probed on these because time ran out is not penalized. If you do dig (see `06_defense_questions.md`) and get a real answer, it moves **Hire → Strong hire**:
+
+- Data quality checks between layers (not just "the job returned 200")
+- A concrete observability/paging story, not "CloudWatch has logs"
+- Schema/recipe versioning with a migration story for already-extracted data
+- Ownership: runbooks, ADRs, a promotion gate for new tenants
+
 ## Record
 
 ```text

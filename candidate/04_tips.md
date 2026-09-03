@@ -25,3 +25,7 @@ Grain of bronze / silver / gold. When silver is published. Tableau on Athena. Ai
 ## v1
 
 Three things you would **not** build first, and the risk of waiting.
+
+## Depth (if you have time)
+
+Not required, but it separates a senior data engineer from a data **architect**: How would you know silver is *correct*, not just present? What would page someone at 3am if gold stopped updating for one tenant? What happens to already-extracted data when the client changes their form and you need a new recipe version?

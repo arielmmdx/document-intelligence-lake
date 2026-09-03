@@ -37,6 +37,8 @@ Landing vs bronze vs silver vs gold. Snapshot commit. SSO vs task roles. Landing
 
 p95 vs p99. Textract cost. Three deferrals.
 
+If they finish early or you want a stronger architect signal, pull 2–3 questions from `06_defense_questions.md` — pick the section where they were vaguest.
+
 ## 0:85–0:90 Close
 
 OCR residual risk. Optional: walk the Mermaid in the root README.

@@ -235,4 +235,5 @@ flowchart TD
 | [expected-solutions/](expected-solutions/README.md) | Interviewer only |
 
 Live interview script: [expected-solutions/03_interview_facilitator_guide.md](expected-solutions/03_interview_facilitator_guide.md).  
-Score: [expected-solutions/04_scoring_rubric.md](expected-solutions/04_scoring_rubric.md).
+Score: [expected-solutions/04_scoring_rubric.md](expected-solutions/04_scoring_rubric.md).  
+Follow-up questions to test depth: [expected-solutions/06_defense_questions.md](expected-solutions/06_defense_questions.md).
