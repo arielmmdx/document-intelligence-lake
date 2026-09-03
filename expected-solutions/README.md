@@ -118,6 +118,65 @@ flowchart TD
 
 ---
 
+## Engineering practices to evaluate (conceptual, not code review)
+
+They **describe** all of this out loud or in writing; nothing here is graded on syntax. Use it as a checklist while they talk — if a whole column never comes up, ask for it before scoring `04_scoring_rubric.md`.
+
+### Python
+
+- Modules split by responsibility (io / layout / extract), not one script.
+- A `main()` (or an Airflow-safe task entrypoint) that gets called — no top-level code that runs on import.
+- Docstring on every function: what it does, its inputs/outputs, why it exists — not the type hint restated in English.
+- Imports actually named (`pypdf`/an OCR client vs `boto3` vs `pyspark`) and why each one, not "some PDF library."
+- Errors distinguish retryable (S3 throttling) from fatal (corrupt file → quarantine); no silent `except: pass`.
+- No hardcoded secrets, ARNs, or paths — config from env vars, Airflow Variables/Connections, or Secrets Manager.
+
+### PySpark
+
+- Explicit partition key for joins and writes (`tenant_id`, `document_id`) — not a default full shuffle.
+- Never `.collect()` a full 50M-row DataFrame; aggregate or write from the workers.
+- Schema declared/enforced on read, tied to `layout_version` — not re-inferred every run.
+- Partition pruning / predicate pushdown when reading Parquet or Iceberg by date or tenant.
+- Broadcast join named for the small recipe/dimension table joined against the big fact table.
+- Skew and Adaptive Query Execution named as a real lever, not "Spark just handles it."
+
+### Airflow DAGs
+
+- Docstring at the top of the DAG file: purpose, owner, retry policy, SLA.
+- Docstring on every task callable — same bar as the Python helpers.
+- Idempotent and backfill-safe: the same logical run reproduces the same silver, not a duplicate.
+- `retries`, `retry_delay`, and pools/concurrency limits named — not "retries: infinite."
+- Task dependencies they can draw as a graph, not a 400-line linear script.
+- Sensors (or event-driven trigger) vs. polling — how the DAG learns a file landed without a tight loop on the Airflow EC2.
+- `catchup` behavior stated, and whether backfills are safe by design.
+- Connections/Variables/Secrets Manager for credentials — never hardcoded in the DAG file.
+
+### Logging & debugging
+
+- Python `logging`, not `print`, with real levels: INFO for progress, WARNING for retryable, ERROR for quarantine.
+- Every log line carries `tenant_id`, `file_id`/`run_id`, `layout_version` so one failure is traceable across ECS tasks.
+- States explicitly what is **never** logged — OCR text, extracted PII (see `03_tips.md`).
+- A concrete "how do I debug this at 3am" story — see `06_defense_questions.md` for follow-ups.
+
+### Security & IAM
+
+- SSO for human access (e.g. AWS IAM Identity Center) — no long-lived IAM users.
+- MFA enforced for human sign-in, especially anyone who can touch landing or IAM.
+- Distinct roles per actor — Airflow EC2, ECS task, Glue job, analyst — none of them the same role, least privilege on each.
+- Task role ≠ the role used to build/deploy images (run-time and deploy-time privilege separated).
+- KMS key per zone (landing/bronze/silver/gold), not one key for everything.
+- No public S3 buckets or objects; account-level public-access block.
+
+### Data catalog & Athena
+
+- Tables registered in Glue Data Catalog (or equivalent) with a declared schema — not "the crawler will figure it out."
+- PII columns classified/tagged (Lake Formation column-level tags, or a named equivalent).
+- Athena workgroup(s) scoped per tenant or sensitivity tier, with query result location controlled — not one shared workgroup for everyone.
+- Gold — never silver or landing — is what Athena, Tableau, and the website read from.
+- Schema changes are additive/backward-compatible or explicitly versioned, so existing Athena queries do not silently break.
+
+---
+
 ## Why we evaluate this way (not with a coding homework)
 
 A senior shows up when they say: “we do not send 10,000 pages to the AI” and “the job writes silver, not the model.”
