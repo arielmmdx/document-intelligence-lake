@@ -5,6 +5,8 @@ This repository is a **senior data engineer interview**. The candidate does **no
 The `candidate/` folder is what you send the interviewee.  
 `expected-solutions/` is the answer key. **Do not send it to the candidate.**
 
+> ⚠️ **Keep this repository private.** `expected-solutions/` is only safe as long as candidates cannot browse this repo. Send candidates the zip below (or just the contents of `candidate/`), never a link to this repository.
+
 ---
 
 ## For the hiring client (plain language)
@@ -48,6 +50,8 @@ If the role also needs “can ship careful Python under a time box,” that is a
 ```bash
 zip -r document-intelligence-lake-candidate.zip candidate
 ```
+
+Attach that zip to the invite email. Do not attach or link this repository.
 
 ---
 
@@ -135,7 +139,7 @@ flowchart LR
 
 | Piece | Role in one sentence |
 | --- | --- |
-| S3 landing / bronze / silver / gold | Folders (buckets) with different locks |
+| S3 landing / bronze / silver / gold | Folders (buckets), each with its own IAM/KMS access rules |
 | EC2 + Airflow | Starts jobs in order; does not scrape PDFs |
 | ECR | Shelf of Python images |
 | ECS | Runs those Python images (sample, OCR batches, Word) |

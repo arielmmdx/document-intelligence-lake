@@ -2,6 +2,8 @@
 
 **Do not send this folder to the candidate.** Send only `candidate/`.
 
+> ⚠️ This only works if the repository itself stays private. A public repo means any candidate can search for it and read the answer key before their interview.
+
 This page is the full explanation of the pipeline and of how we interview. Use it with the hiring client and as your own crib sheet.
 
 ---
@@ -105,7 +107,7 @@ flowchart TD
 
 | Piece | Role |
 | --- | --- |
-| S3 landing / bronze / silver / gold | Separate folders with separate locks |
+| S3 landing / bronze / silver / gold | Separate folders, each with its own IAM/KMS access rules |
 | EC2 + Airflow | Starts jobs; does not scrape PDFs |
 | ECR | Shelf of Python images |
 | ECS | Runs those images (sample, page batches, Word) |
