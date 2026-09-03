@@ -1,8 +1,8 @@
 # Expected solutions — interviewer only
 
-**Do not send this folder to the candidate.** Send only `candidate/`.
+**Do not send this folder, or this repository, to the candidate.** Send only the public [document-intelligence-lake-candidate](https://github.com/arielmmdx/document-intelligence-lake-candidate) repo.
 
-> ⚠️ This only works if the repository itself stays private. A public repo means any candidate can search for it and read the answer key before their interview.
+> ⚠️ This repository is public, same as the candidate one. Nothing technical stops a candidate from finding it if they go looking for the name — the only safeguard is that nobody ever hands them this link. `document-intelligence-lake-candidate` has its own git history with no trace this repo exists.
 
 This page is the full explanation of the pipeline and of how we interview. Use it with the hiring client and as your own crib sheet.
 
@@ -187,6 +187,6 @@ We still ask **how** they would write code: helper modules, **imports**, **docst
 
 If the role also needs “can ship careful Python in a time box,” use the separate anonymization coding trial. Not the same day.
 
-**How to run:** Offline, at home. 8 hours, then stop. Candidate files: problem in `candidate/README.md`, then tips `01`–`05`.
+**How to run:** Offline, at home. 8 hours, then stop. Send the candidate the [document-intelligence-lake-candidate](https://github.com/arielmmdx/document-intelligence-lake-candidate) repo (problem in its `README.md`, then tips `01`–`05`). Never this repo.
 
 Scoring: [04_scoring_rubric.md](04_scoring_rubric.md). Review & debrief guide: [03_interview_facilitator_guide.md](03_interview_facilitator_guide.md). Deeper notes: [01_expected_architecture.md](01_expected_architecture.md), [02_expected_interview_answers.md](02_expected_interview_answers.md). Push the candidate to defend a position: [06_defense_questions.md](06_defense_questions.md).

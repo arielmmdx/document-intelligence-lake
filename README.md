@@ -2,10 +2,10 @@
 
 This repository is a **Senior Data Engineer / Data Architect assessment**. The candidate does **not** write a production system. They explain how they would design one, and why.
 
-The `candidate/` folder is what you send the interviewee.  
+The `candidate/` folder below is kept in sync with the public [document-intelligence-lake-candidate](https://github.com/arielmmdx/document-intelligence-lake-candidate) repo, which is what you send the interviewee.  
 `expected-solutions/` is the answer key. **Do not send it to the candidate.**
 
-> ⚠️ **Keep this repository private.** `expected-solutions/` is only safe as long as candidates cannot browse this repo. Send candidates the zip below (or just the contents of `candidate/`), never a link to this repository.
+> ⚠️ **This repository is public.** That means `expected-solutions/` is only one search away from a candidate who goes looking for it. The one safeguard that matters: never send a candidate a link to *this* repository, or mention it exists. Always send [document-intelligence-lake-candidate](https://github.com/arielmmdx/document-intelligence-lake-candidate) instead — it has a separate git history with no trace of the answer key.
 
 ---
 
@@ -45,13 +45,13 @@ Seniors still must know **how they would write the code**. We ask them to descri
 
 If the role also needs “can ship careful Python under a time box,” that is a **different** exercise (the client’s anonymization coding trial). Do not mix both on the same day.
 
-**How we run it:** Offline, at home. **8 hours**, then stop. Candidate: problem in `candidate/README.md`, tips `01_tips.md` … `05_tips.md`.
+**How we run it:** Offline, at home. **8 hours**, then stop. Send the candidate the [document-intelligence-lake-candidate](https://github.com/arielmmdx/document-intelligence-lake-candidate) link (or zip it if you'd rather attach a file):
 
 ```bash
 zip -r document-intelligence-lake-candidate.zip candidate
 ```
 
-Attach that zip to the invite email. Do not attach or link this repository.
+Either way: never send a link to *this* repository.
 
 ---
 
@@ -231,8 +231,10 @@ flowchart TD
 
 | Folder | Who |
 | --- | --- |
-| [candidate/](candidate/README.md) | Interviewee — files `01` … `05` |
+| [candidate/](candidate/README.md) | Kept in sync with the public candidate repo — reference copy only |
 | [expected-solutions/](expected-solutions/README.md) | Interviewer only |
+
+Send to candidates: [document-intelligence-lake-candidate](https://github.com/arielmmdx/document-intelligence-lake-candidate) (public, separate git history, no answer key).
 
 Review & debrief guide: [expected-solutions/03_interview_facilitator_guide.md](expected-solutions/03_interview_facilitator_guide.md).  
 Score: [expected-solutions/04_scoring_rubric.md](expected-solutions/04_scoring_rubric.md).  
